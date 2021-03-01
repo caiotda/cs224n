@@ -35,8 +35,8 @@ class ModelEmbeddings(nn.Module):
 
         ### YOUR CODE HERE (~2 Lines)
         ### TODO - Initialize the following variables:
-        self.source = nn.Embedding(len(vocab.src), embed_size)
-        self.target = nn.Embedding(len(vocab.tgt), embed_size)
+        self.source = nn.Embedding(len(vocab.src), embed_size, padding_idx = src_pad_token_idx)
+        self.target = nn.Embedding(len(vocab.tgt), embed_size, padding_idx = tgt_pad_token_idx)
         ###
         ### Note:
         ###     1. `vocab` object contains two vocabularies:
