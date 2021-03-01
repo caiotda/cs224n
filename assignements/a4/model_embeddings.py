@@ -11,7 +11,7 @@ Anand Dhoot <anandd@stanford.edu>
 
 import torch.nn as nn
 
-class ModelEmbeddings(nn.Module): 
+class ModelEmbeddings(nn.Module):
     """
     Class that converts input words to their embeddings.
     """
@@ -35,8 +35,8 @@ class ModelEmbeddings(nn.Module):
 
         ### YOUR CODE HERE (~2 Lines)
         ### TODO - Initialize the following variables:
-        ###     self.source (Embedding Layer for source language)
-        ###     self.target (Embedding Layer for target langauge)
+        self.source = nn.Embedding(len(vocab.src), embed_size)
+        self.target = nn.Embedding(len(vocab.tgt), embed_size)
         ###
         ### Note:
         ###     1. `vocab` object contains two vocabularies:
@@ -51,7 +51,6 @@ class ModelEmbeddings(nn.Module):
         ###     Embedding Layer:
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Embedding
         
-
         ### END YOUR CODE
 
 
