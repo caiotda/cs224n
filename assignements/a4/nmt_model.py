@@ -54,13 +54,42 @@ class NMT(nn.Module):
 
         ### YOUR CODE HERE (~8 Lines)
         self.encoder = nn.LSTM(bias=True, Bidirectional=True)
-        self.decoder = nn.LSTMCell(bias=True)
-        self.h_projection = nn.Linear(bias=False)               # W_{h}
-        self.c_projection = nn.Linear(bias=False)               # W_{c}
-        self.att_projection = nn.Linear(bias=False)             # W_{attProj}
-        self.combined_output_projection = nn.Linear(bias=False) # W_{u}
-        self.target_vocab_projection = nn.Linear(bias=False)    # W_{vocab}
-        self.dropout = nn.dropout()
+        self.decoder = nn.LSTMCell(\
+                bias = True, \
+                input_size  = embed_size,\
+                hidden_size = hidden_size
+        )
+        # W_{h}
+        self.h_projection = nn.Linear(\
+            bias = False,\
+            in_features =  2 * hidden_size,\
+            out_features = hidden_size\
+        )
+        # W_{c}
+        self.c_projection = nn.Linear(\
+            bias = False,\
+            in_features =  2 * hidden_size,\
+            out_features = hidden_size\
+        )
+        # W_{attProj}
+        self.att_projection = nn.Linear(\
+            bias = False,\
+            in_features =  2 * hidden_size,\
+            out_features = hidden_size\
+        )
+        # W_{u}
+        self.combined_output_projection = nn.Linear(\
+            bias = False,\
+            in_features =  3 * hidden_size,\
+            out_features = hidden_size\
+        )
+        # W_{vocab}
+        self.target_vocab_projection = nn.Linear(\
+            bias = False,\
+            in_features =  hidden_size,\
+            out_features = len(vocab.tgt)\
+        )
+        self.dropout = nn.Dropout()
         ### TODO - Initialize the following variables:
         ###     self.encoder (Bidirectional LSTM with bias)
         ###     self.decoder (LSTM Cell with bias)
