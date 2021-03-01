@@ -50,7 +50,7 @@ class ModelEmbeddings(nn.Module):
         ### Use the following docs to properly initialize these variables:
         ###     Embedding Layer:
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Embedding
-        
+
         ### END YOUR CODE
 
 
